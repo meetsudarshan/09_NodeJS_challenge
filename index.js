@@ -68,26 +68,41 @@ const generateMarkdown = require("./utils/generateMarkdown");
         ]);
     }
     // TODO: Create a function to write README file
-    function WriteToFile(fileName, data) {
-        fs.writeFile(fileName, data, "utf8", function (err) {
-            if (err) {
-                throw err;
-            }
-            console.log("You have successfully written your README file");
-        });
-    }
+    // function writeToFile(fileName, data) {
+    //     fs.writeFile(fileName, data, (err) => {
+    //       if (err) {
+    //         console.error(err);
+    //         return;
+    //       }
+    //       console.log(`${fileName} generated successfully!`);
+    //     });
+    //   }
 
-    // TODO: Create a function to initialize app
-   async function init() {
-        try {
-            const answers = await askQuestions();
-            generateMarkdown(answers);
-            WriteToFile("README.md", generateMarkdown(answers));
-    
-        } catch (err) {
-            console.log(err);
-        }
-    }
+// index.js
 
-    init();
+// ...
+
+// TODO: Create a function to write README file
+function writeToFile(fileName, data) {
+    fs.writeFile(fileName, data, "utf8", function (err) {
+      if (err) {
+        throw err;
+      }
+      console.log("You have successfully written your README file");
+    });
+  }
+  
+  // TODO: Create a function to initialize app
+  async function init() {
+    try {
+      const answers = await askQuestions();
+      const markdown = generateMarkdown(answers);
+      writeToFile("README.md", markdown);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+  
+  init();
+  
 
